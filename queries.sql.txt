@@ -1,0 +1,67 @@
+-- Find the highest-priced product in each category.
+
+SELECT p1.product_name,
+       p1.category,
+       p1.price
+FROM Products p1
+WHERE p1.price = (
+    SELECT MAX(p2.price)
+    FROM Products p2
+    WHERE p2.category = p1.category
+);
+
+-- Find customers whose total completed payments are greater than ₹5,000.
+
+SELECT c.customer_name
+FROM Customers c
+WHERE (
+    SELECT SUM(pay.amount)
+    FROM Orders o
+    JOIN Payments pay
+    ON o.order_id = pay.order_id
+    WHERE o.customer_id = c.customer_id
+      AND pay.payment_status = 'Completed'
+) > 5000;
+
+-- Find the total sales amount and total quantity sold for each customer, including customers with no orders.
+
+SELECT c.customer_name,
+COALESCE(SUM(oi.quantity * oi.price), 0) AS total_sales,
+COALESCE(SUM(oi.quantity), 0) AS total_quantity
+FROM Customers c
+LEFT JOIN Orders o
+ON c.customer_id = o.customer_id
+LEFT JOIN Order_Items oi
+ON o.order_id = oi.order_id
+GROUP BY c.customer_id, c.customer_name;
+
+-- Find orders whose payment amount is equal to the highest payment amount for each payment status.
+
+SELECT payment_id,
+order_id,
+payment_status,
+amount
+FROM Payments p1
+WHERE amount = (
+    SELECT MAX(p2.amount)
+    FROM Payments p2
+    WHERE p2.payment_status = p1.payment_status
+);
+
+
+-- Find customers who placed orders in the latest order month.
+
+SELECT customer_name
+FROM Customers
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM Orders
+    WHERE MONTH(order_date) = (
+        SELECT MONTH(MAX(order_date))
+        FROM Orders
+    )
+    AND YEAR(order_date) = (
+        SELECT YEAR(MAX(order_date))
+        FROM Orders
+    )
+);

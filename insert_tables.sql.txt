@@ -1,0 +1,124 @@
+INSERT INTO Customers
+(customer_id, customer_name, email, phone, city, registration_date)
+VALUES
+(1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210', 'Hyderabad', '2025-01-10'),
+(2, 'Priya Reddy', 'priya@gmail.com', '9876543211', 'Vijayawada', '2025-01-15'),
+(3, 'Arjun Kumar', 'arjun@gmail.com', '9876543212', 'Bangalore', '2025-02-05'),
+(4, 'Sneha Patel', 'sneha@gmail.com', '9876543213', 'Mumbai', '2025-02-12'),
+(5, 'Kiran Rao', 'kiran@gmail.com', '9876543214', 'Chennai', '2025-03-01'),
+(6, 'Anjali Verma', 'anjali@gmail.com', '9876543215', 'Delhi', '2025-03-10'),
+(7, 'Vikram Singh', 'vikram@gmail.com', '9876543216', 'Pune', '2025-03-18'),
+(8, 'Divya Rani', 'divya@gmail.com', '9876543217', 'Hyderabad', '2025-04-02'),
+(9, 'Sandeep Kumar', 'sandeep@gmail.com', '9876543218', 'Kolkata', '2025-04-15'),
+(10, 'Meena Devi', 'meena@gmail.com', '9876543219', 'Vizag', '2025-05-05'),
+(11, 'Rohit Das', 'rohit@gmail.com', '9876543220', 'Bangalore', '2025-05-20'),
+(12, 'Pooja Sharma', 'pooja@gmail.com', '9876543221', 'Mumbai', '2025-06-01'),
+(13, 'Manoj Reddy', 'manoj@gmail.com', '9876543222', 'Hyderabad', '2025-06-12'),
+(14, 'Kavya Nair', 'kavya@gmail.com', '9876543223', 'Kochi', '2025-07-08'),
+(15, 'Ajay Kumar', 'ajay@gmail.com', '9876543224', 'Chennai', '2025-07-15'),
+(16, 'Swathi Rao', 'swathi@gmail.com', '9876543225', 'Vijayawada', '2025-08-01'),
+(17, 'Naveen Babu', 'naveen@gmail.com', '9876543226', 'Delhi', '2025-08-18'),
+(18, 'Harika Reddy', 'harika@gmail.com', '9876543227', 'Hyderabad', '2025-09-05'),
+(19, 'Karthik Mehta', 'karthik@gmail.com', '9876543228', 'Pune', '2025-09-20'),
+(20, 'Lakshmi Devi', 'lakshmi@gmail.com', '9876543229', 'Vizag', '2025-10-10');
+
+
+INSERT INTO Products
+(product_id, product_name, category, supplier_name, price, stock_quantity)
+VALUES
+(101, 'Laptop', 'Electronics', 'Dell Suppliers', 55000.00, 25),
+(102, 'Smartphone', 'Electronics', 'Samsung Distributors', 25000.00, 40),
+(103, 'Wireless Mouse', 'Accessories', 'HP Suppliers', 750.00, 100),
+(104, 'Keyboard', 'Accessories', 'Logitech Distributors', 1200.00, 80),
+(105, 'Bluetooth Headphones', 'Electronics', 'Sony Suppliers', 2500.00, 50),
+(106, 'Office Chair', 'Furniture', 'Comfort Furniture', 6500.00, 20),
+(107, 'Study Table', 'Furniture', 'Wooden World', 8500.00, 15),
+(108, 'Water Bottle', 'Home & Kitchen', 'Milton Suppliers', 500.00, 120),
+(109, 'Backpack', 'Bags', 'Skybags Distributors', 1800.00, 60),
+(110, 'Running Shoes', 'Footwear', 'Nike Distributors', 4500.00, 35),
+(111, 'T-Shirt', 'Clothing', 'Fashion Hub', 799.00, 90),
+(112, 'Jeans', 'Clothing', 'Denim World', 1599.00, 70),
+(113, 'Wrist Watch', 'Accessories', 'Titan Suppliers', 3200.00, 45),
+(114, 'Microwave Oven', 'Home Appliances', 'LG Distributors', 12000.00, 18),
+(115, 'Refrigerator', 'Home Appliances', 'Samsung Distributors', 28000.00, 12),
+(116, 'Mixer Grinder', 'Home Appliances', 'Prestige Suppliers', 3500.00, 30),
+(117, 'Notebook', 'Stationery', 'Classmate Distributors', 60.00, 200),
+(118, 'Pen', 'Stationery', 'Reynolds Suppliers', 20.00, 300),
+(119, 'LED Monitor', 'Electronics', 'Acer Suppliers', 11000.00, 22),
+(120, 'Power Bank', 'Electronics', 'Mi Distributors', 1500.00, 55);
+
+
+INSERT INTO Orders
+(order_id, customer_id, order_date, order_status)
+VALUES
+(201, 1, '2025-01-12', 'Delivered'),
+(202, 2, '2025-01-18', 'Shipped'),
+(203, 3, '2025-02-10', 'Delivered'),
+(204, 4, '2025-02-15', 'Pending'),
+(205, 5, '2025-03-05', 'Cancelled'),
+(206, 6, '2025-03-12', 'Delivered'),
+(207, 7, '2025-03-20', 'Shipped'),
+(208, 8, '2025-04-05', 'Delivered'),
+(209, 9, '2025-04-18', 'Pending'),
+(210, 10, '2025-05-08', 'Delivered'),
+(211, 11, '2025-05-22', 'Shipped'),
+(212, 12, '2025-06-03', 'Cancelled'),
+(213, 13, '2025-06-15', 'Delivered'),
+(214, 14, '2025-07-10', 'Pending'),
+(215, 15, '2025-07-18', 'Shipped'),
+(216, 16, '2025-08-05', 'Delivered'),
+(217, 17, '2025-08-20', 'Cancelled'),
+(218, 18, '2025-09-08', 'Delivered'),
+(219, 19, '2025-09-22', 'Pending'),
+(220, 20, '2025-10-12', 'Shipped');
+
+
+INSERT INTO Order_Items
+(item_id, order_id, product_id, quantity, price)
+VALUES
+(301, 201, 101, 1, 55000.00),
+(302, 201, 103, 2, 750.00),
+(303, 202, 102, 1, 25000.00),
+(304, 202, 105, 2, 2500.00),
+(305, 203, 104, 2, 1200.00),
+(306, 204, 106, 1, 6500.00),
+(307, 205, 110, 1, 4500.00),
+(308, 206, 111, 3, 799.00),
+(309, 207, 112, 2, 1599.00),
+(310, 208, 113, 1, 3200.00),
+(311, 209, 114, 1, 12000.00),
+(312, 210, 115, 1, 28000.00),
+(313, 211, 116, 2, 3500.00),
+(314, 212, 117, 5, 60.00),
+(315, 213, 118, 10, 20.00),
+(316, 214, 119, 1, 11000.00),
+(317, 215, 120, 2, 1500.00),
+(318, 216, 107, 1, 8500.00),
+(319, 217, 108, 3, 500.00),
+(320, 218, 109, 2, 1800.00);
+
+
+INSERT INTO Payments
+(payment_id, order_id, payment_date, amount, payment_method, payment_status)
+VALUES
+(401, 201, '2025-01-12', 56500.00, 'UPI', 'Completed'),
+(402, 202, '2025-01-18', 30000.00, 'Credit Card', 'Completed'),
+(403, 203, '2025-02-10', 2400.00, 'Debit Card', 'Completed'),
+(404, 204, '2025-02-15', 6500.00, 'UPI', 'Pending'),
+(405, 205, '2025-03-05', 4500.00, 'Cash', 'Refunded'),
+(406, 206, '2025-03-12', 2397.00, 'UPI', 'Completed'),
+(407, 207, '2025-03-20', 3198.00, 'Net Banking', 'Completed'),
+(408, 208, '2025-04-05', 3200.00, 'Credit Card', 'Completed'),
+(409, 209, '2025-04-18', 12000.00, 'Debit Card', 'Pending'),
+(410, 210, '2025-05-08', 28000.00, 'UPI', 'Completed'),
+(411, 211, '2025-05-22', 7000.00, 'Cash', 'Completed'),
+(412, 212, '2025-06-03', 300.00, 'Credit Card', 'Refunded'),
+(413, 213, '2025-06-15', 200.00, 'UPI', 'Completed'),
+(414, 214, '2025-07-10', 11000.00, 'Debit Card', 'Pending'),
+(415, 215, '2025-07-18', 3000.00, 'UPI', 'Completed'),
+(416, 216, '2025-08-05', 8500.00, 'Net Banking', 'Completed'),
+(417, 217, '2025-08-20', 1500.00, 'Cash', 'Refunded'),
+(418, 218, '2025-09-08', 3600.00, 'Credit Card', 'Completed'),
+(419, 219, '2025-09-22', 2500.00, 'UPI', 'Pending'),
+(420, 220, '2025-10-12', 1800.00, 'Debit Card', 'Completed');
+

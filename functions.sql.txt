@@ -1,0 +1,34 @@
+-- the total revenue from completed payments.
+
+SELECT SUM(amount) AS total_amount
+FROM Payments
+WHERE payment_status = 'Completed';
+
+-- Find the length of each product name.
+
+SELECT product_name,
+LENGTH(product_name) AS name_length
+FROM Products;
+
+-- Calculate the total amount for each order.
+
+SELECT order_id,
+SUM(quantity * price) AS total_amount
+FROM Order_Items
+GROUP BY order_id;
+
+-- Display the year of each order.
+
+SELECT order_id,order_date,
+YEAR(order_date) AS order_year
+FROM Orders;
+
+-- Assigns the same rank to equal values and skips the next rank.
+
+SELECT product_name,price,
+RANK() OVER (
+ORDER BY price DESC
+) AS product_rank
+FROM Products;
+
+

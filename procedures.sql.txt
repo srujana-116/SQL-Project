@@ -1,0 +1,72 @@
+-- Display all customer details
+
+DELIMITER //
+
+CREATE PROCEDURE Get_All_Customers()
+BEGIN
+    SELECT * FROM Customers;
+END //
+
+DELIMITER ;
+
+CALL Get_All_Customers();
+
+
+-- Display orders based on order status
+
+DELIMITER //
+
+CREATE PROCEDURE Get_Orders_By_Status(IN status_name VARCHAR(30))
+BEGIN
+    SELECT *
+    FROM Orders
+    WHERE order_status = status_name;
+END //
+
+DELIMITER ;
+CALL Get_Orders_By_Status('Delivered');
+
+
+-- Display products within a given price range
+
+DELIMITER //
+
+CREATE PROCEDURE Get_Products_By_Price_Range(
+    IN min_price DECIMAL(10,2),
+    IN max_price DECIMAL(10,2)
+)
+BEGIN
+    SELECT product_name, category, price
+    FROM Products
+    WHERE price BETWEEN min_price AND max_price
+    ORDER BY price DESC;
+END //
+
+DELIMITER ;
+CALL Get_Products_By_Price_Range(1000, 10000);
+
+
+-- Find customers based on city and registration date
+
+DELIMITER //
+
+CREATE PROCEDURE Get_Customers_By_City_Date(
+    IN input_city VARCHAR(50),
+    IN start_date DATE,
+    IN end_date DATE
+)
+BEGIN
+    SELECT customer_id, customer_name,
+           city, registration_date
+    FROM Customers
+    WHERE city = input_city
+      AND registration_date BETWEEN start_date AND end_date;
+END //
+
+DELIMITER ;
+CALL Get_Customers_By_City_Date(
+    'Hyderabad',
+    '2025-01-01',
+    '2025-12-31'
+);
+

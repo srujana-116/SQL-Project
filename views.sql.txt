@@ -1,0 +1,50 @@
+-- Create a view to display the average product price in each category.
+
+CREATE VIEW Category_Average_Price AS
+SELECT category,
+       ROUND(AVG(price), 2) AS average_price,
+       COUNT(*) AS total_products
+FROM Products
+GROUP BY category;
+
+
+-- Create a view to display customer names and purchased products.
+
+CREATE VIEW Customer_Product_View AS
+SELECT c.customer_name,
+       p.product_name,
+       p.category,
+       oi.quantity,
+       oi.price
+FROM Customers c
+JOIN Orders o ON c.customer_id = o.customer_id
+JOIN Order_Items oi ON o.order_id = oi.order_id
+JOIN Products p ON oi.product_id = p.product_id;
+
+-- Create a view to display total orders placed by each customer.
+
+CREATE VIEW Customer_Order_Count AS
+SELECT c.customer_id,
+       c.customer_name,
+       COUNT(o.order_id) AS total_orders
+FROM Customers c
+LEFT JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name;
+
+-- Display category, total products, average price, total quantity sold, and remaining stock.
+
+CREATE VIEW Category_Inventory_Report AS
+SELECT
+    p.category,
+    COUNT(DISTINCT p.product_id) AS total_products,
+    ROUND(AVG(p.price), 2) AS average_price,
+    SUM(p.stock_quantity) AS available_stock,
+    COALESCE(SUM(oi.quantity), 0) AS quantity_sold
+FROM Products p
+LEFT JOIN Order_Items oi
+    ON p.product_id = oi.product_id
+GROUP BY p.category;
+
+
+
